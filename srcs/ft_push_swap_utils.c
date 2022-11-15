@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:13:19 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 09:55:45 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:10:17 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_create_list(t_list	**head, char **input)
 	while (temp)
 	{
 		temp->l = 'a';
+		temp->b = 0;
 		temp = temp->next;
 	}
 	ft_mark_maxmin(*head);
@@ -68,12 +69,47 @@ long int	ft_long_atoi(const char *str)
 	return (num * sign);
 }
 
+int	ft_get_moves(t_list *lst)
+{
+	int	moves;
+
+	moves = 0;
+	if (lst->p < 0)
+		moves += lst->p * -1;
+	else
+		moves += lst->p;
+	if (lst->b < 0)
+		moves += lst->b * -1;
+	else
+		moves += lst->b;
+	return (moves);
+}
+
+t_list	*ft_select(t_list *lst)
+{
+	t_list	*selected;
+	int		moves;
+
+	moves = ft_get_moves(lst);
+	selected = lst;
+	while (lst)
+	{
+		if (ft_get_moves(lst) < moves)
+		{
+			moves = ft_get_moves(lst);
+			selected = lst;
+		}
+		lst = lst->next;
+	}
+	return (selected);
+}
+
 void	ft_print_lists(t_list *a, t_list *b)
 {
 	printf("LISTA A:\n\n");
 	while (a)
 	{
-		printf("(%d) (%d) |%d| (%d)\n\n", a->m, a->p, a->value, a->b);
+		printf("(%2d) |%2d| (%2d)\n\n", a->p, a->value, a->b);
 		if (a->next == 0)
 			break ;
 		a = a->next;
@@ -81,7 +117,7 @@ void	ft_print_lists(t_list *a, t_list *b)
 	printf("LISTA B:\n\n");
 	while (b)
 	{
-		printf("(%d) (%d) |%d| (%d)\n\n", b->m, b->p, b->value, b->b);
+		printf("(%2d) |%2d| (%2d)\n\n", b->p, b->value, b->b);
 		if (b->next == 0)
 			break ;
 		b = b->next;

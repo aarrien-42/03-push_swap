@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:17:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 10:57:11 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:26:52 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,31 @@ void	ft_solve_medium(t_list **a, t_list **b, int size)
 
 void	ft_solve_large(t_list **a, t_list **b)
 {
-	a = 0;
-	b = 0;
+	int	mv_a;
+	int	mv_b;
+
+	while (*a)
+	{
+		ft_mark_insert(*a, *b);
+		mv_a = ft_select(*a)->p;
+		mv_b = ft_select(*a)->b;
+		while (mv_a > 0 && mv_b > 0 && mv_a-- && mv_b--)
+			ft_double_rotate(&*a, &*b);
+		while (mv_a < 0 && mv_b < 0 && mv_a++ && mv_b++)
+			ft_double_inverse_rotate(&*a, &*b);
+		while (mv_a < 0 && mv_a++)
+			ft_inverse_rotate(&*a, 1);
+		while (mv_a > 0 && mv_a--)
+			ft_rotate(&*a, 1);
+		while (mv_b < 0 && mv_b++)
+			ft_inverse_rotate(&*b, 1);
+		while (mv_b > 0 && mv_b--)
+			ft_rotate(&*b, 1);
+		ft_push(&*a, &*b);
+	}
+	while (*b)
+		ft_push(&*b, &*a);
+	ft_repos_list(&*a);
 }
 
 void	ft_push_swap(int size, char **input)
@@ -48,19 +71,19 @@ void	ft_push_swap(int size, char **input)
 
 	list_b = NULL;
 	ft_create_list(&list_a, input);
-	printf("\n|INICIO|:\n");
-	ft_print_lists(list_a, list_b);
-	printf("\n|MOVIMIENTOS|:\n");
+	//printf("\n|INICIO|:\n");
+	//ft_print_lists(list_a, list_b);
+	//printf("\n|MOVIMIENTOS|:\n");
 	if (size <= 3 && size > 1)
 		ft_solve_little(&list_a);
 	else if (size <= 5 && size > 1)
 		ft_solve_medium(&list_a, &list_b, size);
 	else
 		ft_solve_large(&list_a, &list_b);
-	printf("\n|FINAL|:\n");
-	ft_print_lists(list_a, list_b);
-	printf("solved = %d\n", ft_check_list_sorted(list_a));
-	printf("SIZE = %d\n", size);
+	//printf("\n|FINAL|:\n");
+	//ft_print_lists(list_a, list_b);
+	//printf("solved = %d\n", ft_check_list_sorted(list_a));
+	//printf("SIZE = %d\n", size);
 }
 
 int	main(int argc, char **argv)

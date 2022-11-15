@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:45:06 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 09:46:25 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:22:36 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,32 @@ void	ft_mark_maxmin(t_list *lst)
 		else
 			tmp->m = 0;
 		tmp = tmp->next;
+	}
+}
+
+void	ft_mark_insert(t_list *src, t_list *dst)
+{
+	t_list	*temp;
+
+	temp = dst;
+	while (src && dst && dst->next)
+	{
+		if (src->value > ft_find(dst, 1)->value \
+		|| src->value < ft_find(dst, -1)->value)
+			src->b = ft_find(dst, 1)->p;
+		else
+		{
+			if (src->value < ft_lstlast(dst)->value && src->value > dst->value)
+				src->b = 0;
+			while (dst->next)
+			{
+				if (src->value < dst->value \
+				&& src->value > dst->next->value)
+					src->b = dst->next->p;
+				dst = dst->next;
+			}
+			dst = temp;
+		}
+		src = src->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 19:16:29 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 10:53:58 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:54:39 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	ft_push(t_list **src, t_list **dst)
 		(*dst)->next = temp;
 		(*dst)->l = lst;
 		(*dst)->m = 0;
+		(*dst)->b = 0;
 	}
 	ft_mark(&*src);
 	ft_mark(&*dst);

@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 10:54:43 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:30:27 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_list		*ft_find(t_list *lst, int m);
 long int	ft_long_atoi(const char *str);
 void		ft_print_lists(t_list *a, t_list *b);
 void		ft_create_list(t_list	**head, char **input);
+int			ft_get_moves(t_list *lst);
+t_list		*ft_select(t_list *lst);
 
 /*-ARRAY-*/
 void		ft_print_array(int *str, int size);
@@ -57,6 +59,7 @@ int			ft_check_list_sorted(t_list *lst);
 void		ft_mark(t_list **lst);
 void		ft_mark_maxmin(t_list *lst);
 void		ft_mark_relpos(t_list *lst);
+void		ft_mark_insert(t_list *src, t_list *dst);
 
 /*-PUSH_SWAP-*/
 void		ft_push_swap(int size, char **input);

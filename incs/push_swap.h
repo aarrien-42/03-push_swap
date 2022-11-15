@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 14:30:27 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:30:44 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ void		ft_print_lists(t_list *a, t_list *b);
 void		ft_create_list(t_list	**head, char **input);
 int			ft_get_moves(t_list *lst);
 t_list		*ft_select(t_list *lst);
-
-/*-ARRAY-*/
-void		ft_print_array(int *str, int size);
-int			*ft_array_gen(t_list *lst);
-int			*ft_array_sorting(int *str, int size);
 
 /*-MOVEMENTS-*/
 void		ft_repos_list(t_list **lst);

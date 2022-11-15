@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:45:06 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 15:22:36 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:12:34 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_mark_relpos(t_list *lst)
 
 	i = 0;
 	size = ft_lstsize(lst);
+	if (size == 1)
+		lst->p = 0;
 	while (lst->next)
 	{
 		if (i <= size / 2)

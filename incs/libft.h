@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 14:05:03 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:32:07 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 typedef struct s_list
 {
 	int				value;
-	int				m; // max(1), min (-1) y medio(0)
-	int				p; // posición relativa
-	int				b; // cuantos movimientos de b para insertar número
-	char			l; // 'a' o 'b'
+	int				m;
+	int				p;
+	int				b;
+	char			l;
 	struct s_list	*next;
 }					t_list;
 

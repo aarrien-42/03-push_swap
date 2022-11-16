@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 15:30:44 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:10:04 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@
 t_list		*ft_find(t_list *lst, int m);
 long int	ft_long_atoi(const char *str);
 void		ft_print_lists(t_list *a, t_list *b);
-void		ft_create_list(t_list	**head, char **input);
-int			ft_get_moves(t_list *lst);
-t_list		*ft_select(t_list *lst);
+void		ft_create_list(t_list **head, char **input);
+int			ft_absolute(int num);
 
 /*-MOVEMENTS-*/
 void		ft_repos_list(t_list **lst);
@@ -39,9 +38,13 @@ void		ft_double_rotate(t_list **a, t_list **b);
 void		ft_double_inverse_rotate(t_list **a, t_list **b);
 
 /*-ALGORITHM-*/
-int			ft_exist(t_list *lst, int max, int min);
 void		ft_insert_sorted(t_list **dst, t_list **src);
 void		ft_insert(t_list **src, t_list **dst, t_list *node);
+t_list		*ft_select(t_list *lst, t_list *b);
+
+/*-FREE-*/
+void		ft_free_list(t_list *lst);
+void		ft_free_split(char **split);
 
 /*-CHECKS-*/
 int			ft_check_elements(char **argv);

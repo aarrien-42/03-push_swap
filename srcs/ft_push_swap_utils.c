@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:13:19 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 15:10:17 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/16 09:46:09 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,39 +69,11 @@ long int	ft_long_atoi(const char *str)
 	return (num * sign);
 }
 
-int	ft_get_moves(t_list *lst)
+int	ft_absolute(int num)
 {
-	int	moves;
-
-	moves = 0;
-	if (lst->p < 0)
-		moves += lst->p * -1;
-	else
-		moves += lst->p;
-	if (lst->b < 0)
-		moves += lst->b * -1;
-	else
-		moves += lst->b;
-	return (moves);
-}
-
-t_list	*ft_select(t_list *lst)
-{
-	t_list	*selected;
-	int		moves;
-
-	moves = ft_get_moves(lst);
-	selected = lst;
-	while (lst)
-	{
-		if (ft_get_moves(lst) < moves)
-		{
-			moves = ft_get_moves(lst);
-			selected = lst;
-		}
-		lst = lst->next;
-	}
-	return (selected);
+	if (num < 0)
+		num *= -1;
+	return (num);
 }
 
 void	ft_print_lists(t_list *a, t_list *b)

@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:17:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 16:20:49 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:29:09 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	ft_solve_large(t_list **a, t_list **b)
 	while (*a)
 	{
 		ft_mark_insert(*a, *b);
-		mv_a = ft_select(*a)->p;
-		mv_b = ft_select(*a)->b;
+		mv_a = ft_select(*a, *b)->p;
+		mv_b = ft_select(*a, *b)->b;
 		while (mv_a > 0 && mv_b > 0 && mv_a-- && mv_b--)
 			ft_double_rotate(&*a, &*b);
 		while (mv_a < 0 && mv_b < 0 && mv_a++ && mv_b++)
@@ -71,19 +71,13 @@ void	ft_push_swap(int size, char **input)
 
 	list_b = NULL;
 	ft_create_list(&list_a, input);
-	//printf("\n|INICIO|:\n");
-	//ft_print_lists(list_a, list_b);
-	//printf("\n|MOVIMIENTOS|:\n");
 	if (size <= 3 && size > 1)
 		ft_solve_little(&list_a);
 	else if (size <= 5 && size > 1)
 		ft_solve_medium(&list_a, &list_b, size);
 	else
 		ft_solve_large(&list_a, &list_b);
-	//printf("\n|FINAL|:\n");
-	//ft_print_lists(list_a, list_b);
-	//printf("solved = %d\n", ft_check_list_sorted(list_a));
-	//printf("SIZE = %d\n", size);
+	ft_free_list(list_a);
 }
 
 int	main(int argc, char **argv)
@@ -97,12 +91,12 @@ int	main(int argc, char **argv)
 	{
 		argv = ft_split(argv[1], ' ');
 		if (!ft_check_repeat(argv) || !ft_check_elements(argv))
-			return (ft_putstr("Error\n"), 0);
+			return (ft_free_split(argv), ft_putstr("Error\n"), 0);
 		if (!ft_check_sorted(argv))
-			return (0);
+			return (ft_free_split(argv), 0);
 		while (argv[size])
 			size++;
-		ft_push_swap(size, argv);
+		return (ft_push_swap(size, argv), ft_free_split(argv), 0);
 	}
 	else
 	{

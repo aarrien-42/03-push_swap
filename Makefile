@@ -9,13 +9,13 @@ INC = incs
 
 # Ficheros
 SRC_FILES = ft_push_swap ft_push_swap_utils ft_movements ft_doubles \
-			ft_checks ft_mark ft_algorithm
+			ft_checks ft_mark ft_algorithm ft_free
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 # Comandos
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address -g3
 RM = rm -f
 AR = ar rcs
 

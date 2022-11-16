@@ -6,21 +6,38 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:20:13 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/11/15 14:30:47 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/11/15 19:28:48 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_exist(t_list *lst, int max, int min)
+t_list	*ft_select(t_list *lst, t_list *b)
 {
+	t_list	*selected;
+	int		moves;
+
+	moves = ft_absolute(lst->p) + ft_absolute(lst->b);
+	selected = lst;
 	while (lst)
 	{
-		if (lst->value <= max && lst->value >= min)
-			return (1);
+		if (ft_absolute(lst->p) + ft_absolute(lst->b) == moves)
+		{
+			if (b && ((ft_find(b, 1)->p > 0 && lst->p > 0) \
+			|| (ft_find(b, 1)->p < 0 && lst->p < 0)))
+				selected = lst;
+			if (b && ((lst->p < 0 && lst->b < 0) || (lst->p > 0 && lst->b > 0)) \
+			&& ft_absolute(lst->p) > ft_absolute(lst->b))
+				selected = lst;
+		}
+		if (ft_absolute(lst->p) + ft_absolute(lst->b) < moves)
+		{
+			moves = ft_absolute(lst->p) + ft_absolute(lst->b);
+			selected = lst;
+		}
 		lst = lst->next;
 	}
-	return (0);
+	return (selected);
 }
 
 void	ft_insert_sorted(t_list **dst, t_list **src)
